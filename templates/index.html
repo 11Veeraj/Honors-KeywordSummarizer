@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Summarization with Wikipedia Search</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Custom CSS for animations -->
+    <style>
+        /* Add custom animations here */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .animated {
+            animation-duration: 1s;
+            animation-fill-mode: both;
+        }
+        .fadeInUp {
+            animation-name: fadeInUp;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col-md-6 offset-md-3">
+                <div class="card shadow p-3 mb-5 bg-white rounded">
+                    <div class="card-body text-center">
+                        <h1 class="display-4 mb-4">Text Summarization with Keyword Search</h1>
+                        <form action="/detect" method="POST" class="animated fadeInUp">
+                            <div class="form-group">
+                                <label for="detected_classes">Enter a keyword:</label>
+                                <input type="text" class="form-control" id="detected_classes" name="detected_classes" placeholder="E.g., space dog, Birds, Neil Armstrong">
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-lg btn-block">Search Web</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Bootstrap JS and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

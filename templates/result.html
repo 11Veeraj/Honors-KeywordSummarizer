@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Custom CSS for animations -->
+    <style>
+        /* Add custom animations here */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .animated {
+            animation-duration: 1s;
+            animation-fill-mode: both;
+        }
+        .fadeInUp {
+            animation-name: fadeInUp;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow-lg p-4 mb-5 bg-white rounded">
+                    <div class="card-body">
+                        <h1 class="display-4 mb-4 text-center">Search Results</h1>
+                        <h2 class="mb-4">Detected Classes: {% for cls in detected_classes %}{{ cls }}{% if not loop.last %}, {% endif %}{% endfor %}</h2>
+                        {% if paragraphs %}
+                            <h3 class="mb-3">Top Wikipedia Paragraphs:</h3>
+                            <ul>
+                                {% for paragraph in paragraphs %}
+                                    <li>{{ paragraph }}</li>
+                                {% endfor %}
+                            </ul>
+                            <form action="/summarise" method="POST" class="animated fadeInUp mt-5">
+                                <div class="form-group">
+                                    <input type="hidden" name="selected_tokenizer" value="t5-base">
+                                    <label for="selected_model">Select Model:</label>
+                                    <select name="selected_model" id="selected_model" class="form-control">
+                                        <option value="t5-base">T5-base</option>
+                                        <option value="bert-large-uncased">BERT Large Uncased</option>
+                                        <option value="gpt2">GPT-2</option>
+                                    </select>
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-lg btn-block mt-4">Summarize</button>
+                            </form>
+                        {% else %}
+                            <p class="mt-4">No relevant information found on Wikipedia.</p>
+                        {% endif %}
+                        <a href="/" class="mt-3 btn btn-secondary btn-lg btn-block">Go Back</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Bootstrap JS and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
