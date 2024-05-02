@@ -10,6 +10,8 @@ app = Flask(__name__)
 app.secret_key = 'your_secret_key'
 
 
+import torch
+import numpy as np
 from transformers import AutoTokenizer, AutoModelWithLMHead
 
 
